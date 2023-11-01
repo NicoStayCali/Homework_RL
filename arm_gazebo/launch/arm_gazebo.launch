@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- ===================================================================================== -->
+    <!-- |    Lauch file to start Gazebo with an ARM-RL-23/24 using various controllers.	 | -->
+    
+    <!-- |    It allows to customize the name of the robot, for each robot                   | -->
+    <!-- |	  its topics will be under a nameespace with the same name as the robot's.       | -->
+    
+    <!-- |	  One can choose to have a joint trajectory controller or                        | -->
+    <!-- |    controllers for the single joints, using the "trajectory" argument.            | -->
+    <!-- ===================================================================================== -->
+    
+    <arg name="hardware_interface" default="PositionJointInterface"/> 
+    <arg name="robot_name" default="arm"/>
+    <arg name="origin_xyz" default="'0 0 0'"/> <!-- Note the syntax to pass a vector -->
+    <arg name="origin_rpy" default="'0 0 0'"/>
+    <arg name="model" default="arm"/>
+    <arg name="trajectory" default="true"/>
+
+    <!-- Loads the Gazebo world. -->
+    <include file="$(find arm_gazebo)/launch/arm_world.launch"/>
+   
+    <!-- Loads Controllers -->    
+    <include file="$(find arm_control)/launch/arm_control.launch"/>
+
+    
+</launch>

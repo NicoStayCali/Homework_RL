@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="arm_gazebo" params="robot_name"> 
+      
+    <!-- Load Gazebo lib and set the robot namespace -->
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/${robot_name}</robotNamespace>
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="camera_link">
+      <sensor type="camera" name="camera1">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>800</width> <height>800</height> <format>
+            R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near> <far>300</far>
+          </clip>
+          <noise>
+                <type>gaussian</type> <mean>0.0</mean> <stddev>0.007
+              </stddev>
+            </noise>
+          </camera>
+          <plugin name="camera_controller" filename="
+            libgazebo_ros_camera.so"> ... </plugin>
+          <plugin name="camera_controller" filename="
+            libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link_optical</frameName>
+            <hackBaseline>0.0</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <CxPrime>0</CxPrime>
+            <Cx>0.0</Cx>
+            <Cy>0.0</Cy>
+            <focalLength>0.0</focalLength>
+          </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="f4">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="f5">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="wrist">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="crawer_base">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="base_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="base_turn">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="base_turn_rot">
+      <material>Gazebo/Red</material>
+    </gazebo>
+    
+    <gazebo reference="dyn2">
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="dyn3">
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="dyn4">
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="dyn5">
+      <material>Gazebo/Black</material>
+    </gazebo>
+      
+    <gazebo reference="crawer_left">
+      <material>Gazebo/Red</material>
+    </gazebo>
+    
+    <gazebo reference="crawer_right">
+      <material>Gazebo/Red</material>
+    </gazebo>   
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find arm_description)/urdf/arm.urdf.xacro"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub"/>
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joi_st_pub"/>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find arm_description)/rviz/arm.rviz" required="true" />
+</launch>
+
+
