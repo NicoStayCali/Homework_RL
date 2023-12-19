@@ -1,0 +1,3 @@
+Questa configurazione predilige la velocità.
+
+Visualizza i commenti nel codice per notare le variazioni dei parametri.

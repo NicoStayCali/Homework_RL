@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<launch>
+	<arg name="model" />						
+	<param name="robot_description" command="$(find xacro)/xacro $(find rl_fra2mo_description)/urdf/fra2mo.xacro" />
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rl_fra2mo_description)/conf/fra2mo_conf.rviz" required="true" />
+	
+
+</launch>

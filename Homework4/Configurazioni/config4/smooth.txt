@@ -1,0 +1,3 @@
+Questa configurazione predilige la fluidità, bilanciando la velocità e l'evitamento ostacoli.
+
+Visualizza i commenti nel codice per notare le variazioni dei parametri.

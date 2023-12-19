@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="x_pos" default="-3.0"/>
+  <arg name="y_pos" default="5.0"/>
+  <arg name="z_pos" default="0.1"/>
+  <arg name="Y_yaw" default="-1.57"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(find rl_racefield)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rl_racefield)/worlds/rl_race_field.world" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+
+  <!-- urdf xml robot description loaded on the Parameter Server-->  
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find rl_fra2mo_description)/urdf/fra2mo.xacro'" /> 
+
+    <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -model fra2mo -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg Y_yaw) -param robot_description"/> 
+
+
+  <!-- GUI Controls -->
+  <node pkg="rqt_robot_steering" type="rqt_robot_steering"  name="Pilot" />  <!-- Uncomment if you want to use robot_steering -->
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />   -->
+  <!-- RVIZ  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rl_fra2mo_description)/conf/fra2mo_conf_map.rviz" required="true" />
+
+  <!--2a-->
+  <!--Static tf publisher for goal-->
+	<node pkg="tf" type="static_transform_publisher" name="goal_1_pub" args="-10 3 0 0 0 0 1 map goal1 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_2_pub" args="-15 7 0 0 0 0.26 0.97 map goal2 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_3_pub" args="-6 8 0 0 0 1 0 map goal3 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_4_pub" args="-17.5 3 0 0 0 0.61 0.79 map goal4 100" />
+  
+  <!--3a-->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="goal_1_pub" args="-10 3 0 0 0 0 1 map goal1 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_2_pub" args="-16 9.5 0 0 0 0.26 0.97 map goal2 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_3_pub" args="-6 8 0 0 0 1 0 map goal3 100" />
+	<node pkg="tf" type="static_transform_publisher" name="goal_4_pub" args="-17.5 3 0 0 0 0.61 0.79 map goal4 100" /> 
+	<node pkg="tf" type="static_transform_publisher" name="goal_5_pub" args="-3 0.4 0 0 0 0.26 0.97 map goal5 100" /> 
+	<node pkg="tf" type="static_transform_publisher" name="goal_6_pub" args="-0.4 9.5 0 0 0 0.61 0.79 map goal6 100" />   -->
+
+
+
+</launch>

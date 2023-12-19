@@ -1,0 +1,9 @@
+publish_voxel_map: false 
+transform_tolerance: 0.2 # Ridotto per una maggiore reattività
+meter_scoring: true
+obstacle_range: 10.0 # Aumentato per una maggiore distanza di visualizzazione
+raytrace_range: 12.0 # Aumentato per una maggiore distanza di raytracing
+footprint: [[0.15, -0.15], 
+            [-0.15, -0.15], 
+            [-0.15, 0.2], 
+            [0.15, 0.15]]

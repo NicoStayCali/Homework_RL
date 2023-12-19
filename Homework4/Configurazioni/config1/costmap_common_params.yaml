@@ -1,0 +1,9 @@
+publish_voxel_map: false 
+transform_tolerance: 0.5
+meter_scoring: true
+obstacle_range: 7.0 
+raytrace_range: 8.0 
+footprint: [[0.15, -0.15], 
+            [-0.15, -0.15], 
+            [-0.15, 0.2], 
+            [0.15, 0.15]]

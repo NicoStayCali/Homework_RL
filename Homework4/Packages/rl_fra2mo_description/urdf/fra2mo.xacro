@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<robot name="fra2mo" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find rl_fra2mo_description)/urdf/fra2mo_base_macro.xacro" />
+  <xacro:include filename="$(find rl_fra2mo_description)/urdf/lidar_gazebo_macro.xacro" />
+  <xacro:include filename="$(find rl_fra2mo_description)/urdf/d435_gazebo_macro.xacro" /> 
+  
+
+  <xacro:property name="LIDAR" value="True"/>
+  <xacro:property name="DEPTH" value="True"/>
+  
+  <!-- Diff Drive Robot Base  -->
+  <xacro:fra2mo_base />
+
+  <!-- LIDAR Sensor -->
+  <xacro:if value="${LIDAR}" > 
+    <xacro:lidar_gazebo_sensor parent="lidar_link" />
+  </xacro:if>
+  <!-- Uncomment if you want to add also a D435 camera -->
+  <!-- RGBD Sensor -->
+  <xacro:if value="${DEPTH}" > 
+    <xacro:d435_gazebo_sensor parent="d435_link" />
+  </xacro:if>   
+  
+</robot>

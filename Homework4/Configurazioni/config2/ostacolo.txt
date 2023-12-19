@@ -1,0 +1,3 @@
+Questa configurazione predilige l'evitamento degli ostacoli ed il passaggio in ambienti molto ridotti.
+
+Visualizza i commenti nel codice per notare le variazioni dei parametri.

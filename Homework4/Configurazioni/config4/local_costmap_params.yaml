@@ -1,0 +1,10 @@
+local_costmap:
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_frequency: 10.0 # Aumentato per una maggiore frequenza di aggiornamento
+  publish_frequency: 10.0 
+  static_map: false
+  rolling_window: true
+  width: 10.0 # Aumento la larghezza della mappa locale per maggiore precisione
+  height: 10.0 # Aumento la lunghezza della mappa locale per maggiore precisione
+  resolution: 0.02 # Ridotto per una maggiore precisione
